@@ -43,9 +43,22 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCustomerRequest $request)
+    public function store(Request $request)
     {
-        //
+        $customer = Customer::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'city' => $request->city,
+            'address'=> $request->address,
+            'state'=> $request->state,
+            'type'=> $request->type,
+            'postal_code'=> $request->postalCode
+        ]);
+
+        return response()->json([
+            'message' => 'Customer created successfully!',
+            'data' => new CustomerResource($customer)
+        ], 201);
     }
 
     /**
