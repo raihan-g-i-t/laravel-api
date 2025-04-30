@@ -58,7 +58,13 @@ class CustomerController extends Controller
     public function update(Request $request, Customer $customer)
     {
         $customer->update([
-            'name' => $request->name
+            'name' => $request->name ?? $customer->name,
+            'email' => $request->email ?? $customer->email,
+            'city' => $request->city ?? $customer->city,
+            'address'=> $request->address ?? $customer->address,
+            'state'=> $request->state ?? $customer->state,
+            'type'=> $request->type ?? $customer->type,
+            'postal_code'=> $request->postalCode ?? $customer->postal_code
         ]);
 
         return response()->json([
