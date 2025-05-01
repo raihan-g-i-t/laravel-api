@@ -22,7 +22,19 @@ class StoreCustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' =>  'required',
+            'email' =>  'required',
+            'city' =>  'required',
+            'address'=>  'required',
+            'state'=>  'required',
+            'type'=>  'required',
+            'postalCode'=> 'required',
+        ];
+    }
+
+    public function messages(){
+        return [
+            'email.required' => 'email is required'
         ];
     }
 }

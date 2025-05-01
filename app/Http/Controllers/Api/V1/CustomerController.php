@@ -15,9 +15,7 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index(Request $request)
     {
         $filter = new CustomerFilter();
@@ -32,7 +30,7 @@ class CustomerController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store(StoreCustomerRequest $request)
     {
         $customer = Customer::create([
             'name' => $request->name,
