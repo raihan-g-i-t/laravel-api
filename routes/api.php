@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\CustomerController;
@@ -13,4 +14,7 @@ Route::get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1'], function(){
     Route::apiResource('customers', CustomerController::class);
     Route::apiResource('invoices', InvoiceController::class);
+    Route::post('/login', [UserController::class, 'login']);
+    Route::post('/signup', [UserController::class, 'signup']);
 });
+
