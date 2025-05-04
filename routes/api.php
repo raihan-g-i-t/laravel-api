@@ -12,9 +12,12 @@ Route::get('/user', function (Request $request) {
 
 //api/V1
 Route::group(['prefix' => 'v1'], function(){
-    Route::apiResource('customers', CustomerController::class);
-    Route::apiResource('invoices', InvoiceController::class);
     Route::post('/login', [UserController::class, 'login']);
+    Route::get('/login', [UserController::class, 'login'])->name('login');
     Route::post('/signup', [UserController::class, 'signup']);
+    Route::group(['middleware' => 'auth:sanctum'], function(){
+        Route::apiResource('customers', CustomerController::class);
+        Route::apiResource('invoices', InvoiceController::class);
+    });
 });
 
